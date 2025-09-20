@@ -397,8 +397,8 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"seed-a.bitzal.org", ""};
-static const string testnet_seeds[] = {"testseeds.bitzal.org", ""};
+static const string mainnet_seeds[] = {"seed.bitzal.org", ""};
+static const string testnet_seeds[] = {"testseed.bitzal.org", ""};
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
@@ -455,10 +455,10 @@ int main(int argc, char **argv) {
   bool fDNS = true;
   if (opts.fUseTestNet) {
       printf("Using testnet.\n");
-      pchMessageStart[0] = 0xb6;
-      pchMessageStart[1] = 0xf5;
-      pchMessageStart[2] = 0xd3;
-      pchMessageStart[3] = 0xcf;
+      pchMessageStart[0] = 0xfb;
+      pchMessageStart[1] = 0xc0;
+      pchMessageStart[2] = 0xaf;
+      pchMessageStart[3] = 0xdf;
       seeds = testnet_seeds;
       fTestNet = true;
   }

@@ -453,7 +453,7 @@ int main(int argc, char **argv) {
     }
   }
   bool fDNS = true;
-    if (opts.fUseMainNet) {
+    if (opts.fUseTestNet) {
       printf("Using mainnet.\n");
       pchMessageStart[0] = 0xf1;
       pchMessageStart[1] = 0xc9;

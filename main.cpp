@@ -453,12 +453,22 @@ int main(int argc, char **argv) {
     }
   }
   bool fDNS = true;
-  if (opts.fUseTestNet) {
-      printf("Using testnet.\n");
+    if (opts.fUseMainNet) {
+      printf("Using mainnet.\n");
       pchMessageStart[0] = 0xf1;
       pchMessageStart[1] = 0xc9;
       pchMessageStart[2] = 0xb2;
       pchMessageStart[3] = 0xd4;
+      seeds = mainnet_seeds;
+      fTestNet = true;
+  }
+
+  if (opts.fUseTestNet) {
+      printf("Using testnet.\n");
+      pchMessageStart[0] = 0xfb;
+      pchMessageStart[1] = 0xc0;
+      pchMessageStart[2] = 0xaf;
+      pchMessageStart[3] = 0xdf;
       seeds = testnet_seeds;
       fTestNet = true;
   }
@@ -485,6 +495,9 @@ int main(int argc, char **argv) {
         db.ResetIgnores();
     printf("done\n");
   }
+  printf("Adding initial node...\n");
+  db.Add(CService("202.71.12.139", GetDefaultPort()), true);
+
   pthread_t threadDns, threadSeed, threadDump, threadStats;
   if (fDNS) {
     printf("Starting %i DNS threads for %s on %s (port %i)...", opts.nDnsThreads, opts.host, opts.ns, opts.nPort);
